@@ -1,5 +1,5 @@
 {
-  "name": "com.danielkreitsch.nx-unity",
+  "name": "com.hikaruinteractive.nx-unity",
   "version": "0.0.1",
   "displayName": "Nx Unity",
   "description": "Resolves global dependencies in an Nx workspace",
