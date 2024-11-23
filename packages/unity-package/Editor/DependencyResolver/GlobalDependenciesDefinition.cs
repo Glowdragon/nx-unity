@@ -18,7 +18,7 @@ namespace NxUnity
     private Dependencies dependencies = new();
 
     [JsonIgnore]
-    public Dependencies Dependencies => this.dependencies;
+    public Dependencies Dependencies => dependencies;
 
     public static GlobalDependenciesDefinition Get()
     {
@@ -38,14 +38,14 @@ namespace NxUnity
         dependencyReference = "file:" + System.IO.Path.GetRelativePath(NxUtils.GetWorkspaceRoot(), absolutePath).Replace('\\', '/');;
       }
 
-      this.dependencies.Add(packageName, dependencyReference);
+      dependencies.Add(packageName, dependencyReference);
     }
 
     public void Save()
     {
-      this.dependencies.Sort();
+      dependencies.Sort();
       var fullStructure = JObject.Parse(File.ReadAllText(Path));
-      fullStructure["unityDependencies"] = JObject.FromObject(this.dependencies);
+      fullStructure["unityDependencies"] = JObject.FromObject(dependencies);
       string newJsonContent = JsonConvert.SerializeObject(fullStructure, Formatting.Indented);
       File.WriteAllText(Path, newJsonContent);
     }
